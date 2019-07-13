@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
 import {Tooltip,Icon} from "antd";
+import WithLike from "./WithLike";
 import "../assets/main.css";
 
 class Dislike extends Component {
     render() {
+      const {count,increment} =this.props;
         return (
             <span>
             <Tooltip title="Dislike">
               <Icon
                 type="dislike"
-                theme={this.props.action === 'disliked' ? 'filled' : 'outlined'}
-                onClick={this.props.dislike}
+                onClick={increment}
               />
             </Tooltip>
-            <span className="like">{this.props.dislikes}</span>
+            <span className="like">{count}</span>
           </span>
         );
     }
 }
 
-export default Dislike;
+export default WithLike(Dislike);

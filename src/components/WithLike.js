@@ -1,31 +1,26 @@
-import React from 'react';
+import React from "react";
 
-const WithLike = (WrappedComponent) => {
-    return class extends React.Component{
-        constructor(props){
-            this.state = {
-                likes: 0,
-                dislikes: 0,
-                action: null,
-              };
-        }
-        like = () => {
-            this.setState({
-             likes:this.state.likes+1
-            });
-          };
-        
-          dislikes = () => {
-            this.setState({
-                dislikes:this.state.dislikes+1
-            });
-          };
-          render(){
-              
-          }
-
+const WithLike = WrappedComponent => {
+  class NewComponent extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        count: 0
+      };
     }
+    increment = () => {
+      this.setState(prevState => {
+        return { count: prevState.count + 1 };
+      });
+     
+    };
+    render() {
+      const { count } = this.state;
+      console.log(count);
+      return <WrappedComponent count={count} increment={this.increment} />;
+    }
+  }
+  return NewComponent;
 };
-
 
 export default WithLike;

@@ -1,24 +1,17 @@
-import React from 'react';
-import { Comment, Avatar,Tooltip} from 'antd';
+import React from "react";
+import { Comment, Avatar, Tooltip } from "antd";
 import Like from "./Like";
 import Dislike from "./Dislike";
-import moment from 'moment';
+import moment from "moment";
 
 class Post extends React.Component {
-
   render() {
-    const { likes, dislikes, action } = this.state;
-
-    const actions = [
-      <Like likes={likes} action={action} like={this.like} />,
-      <Dislike dislikes={dislikes} action={action} dislike={this.dislike}/>,
-      <span>Reply to</span>,
-    ];
+    const actions = [<Like />, <Dislike />, <span>Reply to</span>];
 
     return (
       <Comment
         actions={actions}
-        author={<a>Han Solo</a>}
+        author={<a href="?">Han Solo</a>}
         avatar={
           <Avatar
             src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
@@ -27,13 +20,13 @@ class Post extends React.Component {
         }
         content={
           <p>
-            We supply a series of design principles, practical patterns and high quality design
-            resources (Sketch and Axure), to help people create their product prototypes beautifully
-            and efficiently.
+            We supply a series of design principles, practical patterns and high
+            quality design resources (Sketch and Axure), to help people create
+            their product prototypes beautifully and efficiently.
           </p>
         }
         datetime={
-          <Tooltip title={moment().format('YYYY-MM-DD HH:mm:ss')}>
+          <Tooltip title={moment().format("YYYY-MM-DD HH:mm:ss")}>
             <span>{moment().fromNow()}</span>
           </Tooltip>
         }
@@ -41,6 +34,5 @@ class Post extends React.Component {
     );
   }
 }
-
 
 export default Post;
